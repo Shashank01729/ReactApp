@@ -1,17 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { render } from 'react-dom';
+import Card from './Card';
+import CardBig from './CardBig';
+import Header from "./Header";
+import './style.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const App = () => (
+  <div>
+    <Header /> 
+    <div style={{ display: 'flex' }}>
+      <div style={{ flex: '1 0 30%', marginRight: '20px', height: '100vh', overflow: 'auto' }}>
+        {Array(8).fill().map((_, i) => (
+          <div key={i} style={{ marginBottom: '20px' }}>
+            <Card>
+              <h2>Card {i + 1}</h2>
+            </Card>
+          </div>
+        ))}
+      </div>
+      <div style={{ flex: '10000' }}> 
+        <div style={{ display: 'flex', flexDirection: 'column' }}> 
+          <div style={{ marginBottom: '20px' }}>
+            <CardBig>
+              <h2>Big Card 1</h2>
+            </CardBig>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+render(
+  <React.StrictMode>
+    <App /> 
+  </React.StrictMode>,
+  document.getElementById('root')
+);
